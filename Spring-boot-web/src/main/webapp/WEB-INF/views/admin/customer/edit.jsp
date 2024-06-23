@@ -129,7 +129,7 @@
                                         <td>${it.transactionDetail}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs btn-group">
-                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${it.id})">
+                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${it.id}, '${it.transactionDetail}')">
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -169,7 +169,7 @@
                                         <td>${itt.transactionDetail}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs btn-group">
-                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${itt.id})">
+                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${itt.id}, '${itt.transactionDetail}')">
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -220,7 +220,8 @@
         $('#code').val(code);
     }
 
-    function UpdateTransaction(id){
+    function UpdateTransaction(id, it){
+        $('#transactionDetail').val(it);
         $('#transactionTypeModal').modal();
         $('#idd').val(id);
     }
