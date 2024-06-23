@@ -129,7 +129,7 @@
                                         <td>${it.transactionDetail}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs btn-group">
-                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${it.id})">
+                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${it.id}, '${it.transactionDetail}')">
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -169,7 +169,7 @@
                                         <td>${itt.transactionDetail}</td>
                                         <td>
                                             <div class="hidden-sm hidden-xs btn-group">
-                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${itt.id})">
+                                                <button class="btn btn-xs btn-info" data-toggle="tooltip" title="Sửa thông tin giao dịch" onclick="UpdateTransaction(${itt.id}, '${itt.transactionDetail}')">
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -196,7 +196,7 @@
                     <label for="transactionDetail" class="col-xs-12 col-sm-3 control-label no-padding-right">Chi tiết giao dịch</label>
                     <div class="col-xs-12 col-sm-9">
                     <span class="block input-icon input-icon-right">
-                        <input type="text" id="transactionDetail" class="width-100" value="}">
+                        <input type="text" id="transactionDetail" class="width-100">
                     </span>
                     </div>
                 </div>
@@ -220,8 +220,8 @@
         $('#code').val(code);
     }
 
-    function UpdateTransaction(id){
-        // $('#transaction').val(it);
+    function UpdateTransaction(id, it){
+        $('#transaction').val(it);
         $('#transactionTypeModal').modal();
         $('#idd').val(id);
     }
