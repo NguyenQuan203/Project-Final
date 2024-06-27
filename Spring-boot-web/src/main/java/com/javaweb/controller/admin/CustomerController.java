@@ -2,6 +2,7 @@ package com.javaweb.controller.admin;
 
 import com.javaweb.entity.CustomerEntity;
 import com.javaweb.entity.TransactionEntity;
+import com.javaweb.entity.UserEntity;
 import com.javaweb.enums.Status;
 import com.javaweb.enums.TransactionType;
 import com.javaweb.enums.districtCode;
@@ -10,6 +11,7 @@ import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.request.CustomerSearchRequest;
 import com.javaweb.model.response.CustomerSearchResponse;
 import com.javaweb.repository.TransactionRepository;
+import com.javaweb.repository.UserRepository;
 import com.javaweb.security.utils.SecurityUtils;
 import com.javaweb.service.CustomerService;
 import com.javaweb.service.IUserService;
@@ -38,6 +40,9 @@ public class CustomerController {
     @Autowired
     TransactionRepository transactionRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping(value = "/admin/customer-list")
     public ModelAndView customerList(@ModelAttribute("modelSearch") CustomerSearchRequest customerSearchRequest, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("admin/customer/list");
@@ -65,12 +70,20 @@ public class CustomerController {
 
     @GetMapping(value = "/admin/customer-edit-{id}")
     public ModelAndView addCustomer(@PathVariable Long id) {
+        CustomerEntity x = customerService.findById(id);
+        if(SecurityUtils.getAuthorities().contains("ROLE_STAFF")){
+            Long staffId = SecurityUtils.getPrincipal().getId();
+            UserEntity result = userRepository.findById(staffId).get();
+            if(result.getCustomers().contains(x) == false){
+                ModelAndView mav = new ModelAndView();
+                return mav;
+            }
+        }
         ModelAndView mav = new ModelAndView("admin/customer/edit");
         CustomerDTO customerDTO = customerService.findCustomerById(id);
         mav.addObject("transactionType", TransactionType.transactionType());
         mav.addObject("status", Status.getStatus());
         mav.addObject("buildingEdit", customerDTO);
-        CustomerEntity x = customerService.findById(id);
         List<TransactionEntity> result1 = transactionRepository.findByCodeAndCustomer("CSKH", x);
         List<TransactionEntity> result2 = transactionRepository.findByCodeAndCustomer("DDX", x);
         mav.addObject("cus1", result1);
