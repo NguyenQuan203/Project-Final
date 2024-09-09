@@ -82,7 +82,7 @@
                                             </security:authorize>
                                         </c:if>
                                         <a class="btn btn-primary" href="/admin/customer-list">
-                                            Hủy thao tác`
+                                            Hủy thao tác
                                         </a>
                                         <input type="hidden" id="buildingID" name="buildingID" value="${buildingEdit.id}">
                                     </div>

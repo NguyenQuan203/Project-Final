@@ -1,5 +1,7 @@
 package com.javaweb.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CustomerDTO extends AbstractDTO{
     private String name;
     private String managementStaff;

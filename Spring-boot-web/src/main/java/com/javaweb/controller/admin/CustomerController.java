@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController(value="customerControllerOfAdmin")
@@ -74,7 +75,7 @@ public class CustomerController {
         if(SecurityUtils.getAuthorities().contains("ROLE_STAFF")){
             Long staffId = SecurityUtils.getPrincipal().getId();
             UserEntity result = userRepository.findById(staffId).get();
-            if(result.getCustomers().contains(x) == false){
+            if(result.getCustomers().contains(x) == false || x.getActive().equals("0") == true){
                 ModelAndView mav = new ModelAndView();
                 return mav;
             }

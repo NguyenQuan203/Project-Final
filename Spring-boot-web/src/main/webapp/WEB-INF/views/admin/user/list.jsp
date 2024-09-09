@@ -152,7 +152,11 @@
                                                 </a>
                                             </c:if>
                                             <c:if test="${tableList.roleCode == 'MANAGER'}">
-                                                <p>Không đươc thao tác</p>
+                                                <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
+                                                   title="Cập nhật người dùng"
+                                                   href='<c:url value="/admin/user-edit-${tableList.id}"/>'>
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </a>
                                             </c:if>
                                         </display:column>
                                     </display:table>

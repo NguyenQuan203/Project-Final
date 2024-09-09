@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:url var="buildingEditURL" value="/lien-he"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -118,21 +117,21 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <h2 class="title-lienhe"><strong>Liên hệ với chúng tôi</strong></h2>
-                    <form:form method="GET" id="form-edit" action="${buildingEditURL}">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Họ và tên" name="name" >
+                        <form id="form-edit" action="">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Họ và tên" name="name" >
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Email" name="email">
+                                </div>
                             </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Email" name="email">
-                            </div>
-                        </div>
-                        <input type="text" class="form-control mt-3" placeholder="Số điện thoại" name="phoneNumber">
-                        <input type="text" class="form-control mt-3" placeholder="Nội dung" name="demand">
-                        <button type="button" class="btn btn-primary px-4 mt-3" onclick="btnAddCustomer('Chưa xử lý')">
-                            Gửi liên hệ
-                        </button>
-                    </form:form>
+                            <input type="text" class="form-control mt-3" placeholder="Số điện thoại" name="phoneNumber">
+                            <input type="text" class="form-control mt-3" placeholder="Nội dung" name="demand">
+                            <button type="button" class="btn btn-primary px-4 mt-3" onclick="btnAddCustomer('Chưa xử lý')">
+                                Gửi liên hệ
+                            </button>
+                        </form>
                 </div>
             </div>
         </div>
@@ -251,7 +250,7 @@
         });
         data['status'] = status;
         if(data['name'] == null){
-            return alert("Tên khách hàng không được thiếu!");
+            return alert("Tên không được thiếu!");
         }
         if(data['phoneNumber'] == null){
             return alert("Số điện thoại không được thiếu!");
